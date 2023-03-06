@@ -25,12 +25,12 @@ The coefficient of determination of the model is 0.68, which is a good result co
 
 ## Usage
 
-Clone the repository from GitHub (coronapl/concrete-strength).
-Create a virtual environment with the command python3 -m venv venv.
-Activate the virtual environment with the command source venv/bin/activate.
-Install all required packages with the command pip3 install -r requirements.txt.
-Run the program with the command python3 model.py.
-Enter the kg of cement in m³ of mixture (100 - 550).
-Enter the kg of blast furnace slag in m³ of mixture (0 - 360).
-Enter the kg of fly ash in m³ of mixture (0 - 200).
-Enter the kg of water in m³ of mixture (100 - 250).
+1. Clone the repository from GitHub (coronapl/concrete-strength).
+2. Create a virtual environment with the command `python3 -m venv venv`.
+3. Activate the virtual environment with the command `source venv/bin/activate`.
+4. Install all required packages with the command `pip3 install -r requirements.txt`.
+5. Run the program with the command `python3 model.py`.
+6. Enter the kg of cement in m³ of mixture (100 - 550).
+7. Enter the kg of blast furnace slag in m³ of mixture (0 - 360).
+8. Enter the kg of fly ash in m³ of mixture (0 - 200).
+9. Enter the kg of water in m³ of mixture (100 - 250).
