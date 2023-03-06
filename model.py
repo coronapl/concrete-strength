@@ -1,3 +1,7 @@
+# Pablo Valencia A01700912
+# March 6, 2023
+# Intelligent Systems
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn import linear_model
@@ -57,10 +61,10 @@ def train_model():
 def get_user_data():
     print('\nUser input: \n')
 
-    cement = int(input('Kg of cement in m^3 of mixture: ')) 
-    blast_furnace_slag = int(input('Kg of blast furnace slag in m^3 of mixture: ')) 
-    fly_ash = int(input('Kg of fly ash in m^3 of mixture: ')) 
-    water = int(input('Kg of water in m^3 of mixture: ')) 
+    cement = float(input('Kg of cement in m^3 of mixture: ')) 
+    blast_furnace_slag = float(input('Kg of blast furnace slag in m^3 of mixture: ')) 
+    fly_ash = float(input('Kg of fly ash in m^3 of mixture: ')) 
+    water = float(input('Kg of water in m^3 of mixture: ')) 
 
     return [cement, blast_furnace_slag, fly_ash, water]
 
