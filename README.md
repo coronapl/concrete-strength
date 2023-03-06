@@ -1,5 +1,7 @@
 # Concrete Strength Predictor Using Linear Regression
 
+By Pablo Valencia A01700912  
+
 This model is a simple linear regression that uses the dataset "Concrete Compressive Strength" by Prof. I-Cheng Yeh, which was obtained from the UCI Machine Learning Repository.
 
 I-Cheng Yeh, "Modeling of strength of high performance concrete using artificial neural networks," Cement and Concrete Research, Vol. 28, No. 12, pp. 1797-1808 (1998)
