@@ -5,16 +5,12 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import MinMaxScaler
 
 
+FEATURES = ['cement', 'blast_furnace_slag', 'fly_ash', 'water']
+
 def load_dataset(filepath, columns):
     df = pd.read_excel(filepath)
     df.columns = columns
     return df
-
-def scale_dataframe(df):
-    scaler = MinMaxScaler()
-    scaled_array = scaler.fit_transform(df)
-    scaled_df = pd.DataFrame(scaled_array, columns=df.columns, index=df.index)
-    return scaled_df
 
 def create_model(x_train, y_train):
     model = linear_model.LinearRegression()
@@ -27,7 +23,6 @@ def get_model_performance(test_data, predictions):
     return mse, coefficient_determination
 
 def train_model():
-
     print('-- CONCRETE STRENGTH PREDICTOR --\n')
     print('Training the model...')
 
@@ -40,10 +35,9 @@ def train_model():
                 'fine_aggregate',
                 'age',
                 'compressive_strength'])
-    scaled_df = scale_dataframe(df)
 
-    df_x = scaled_df[['cement', 'blast_furnace_slag', 'fly_ash', 'water']]
-    df_y = scaled_df['compressive_strength']
+    df_x = df[FEATURES]
+    df_y = df['compressive_strength']
 
     x_train, x_test = df_x[:950], df_x[950:]
     y_train, y_test = df_y[:950], df_y[950:]
@@ -60,21 +54,29 @@ def train_model():
 
     return model
 
+def get_user_data():
+    print('\nUser input: \n')
+
+    cement = int(input('Kg of cement in m^3 of mixture: ')) 
+    blast_furnace_slag = int(input('Kg of blast furnace slag in m^3 of mixture: ')) 
+    fly_ash = int(input('Kg of fly ash in m^3 of mixture: ')) 
+    water = int(input('Kg of water in m^3 of mixture: ')) 
+
+    return [cement, blast_furnace_slag, fly_ash, water]
+
 def main():
     model = train_model()
+    stop = False
 
-    print('\n User input: \n')
+    while not stop:
+        user_data = get_user_data()
+        user_df = pd.DataFrame([user_data], columns=FEATURES)
+        
+        print('The predicted concrete strength is %.2f MPa\n' % 
+              model.predict(user_df))
 
-    # Get user input
-    cement_kg = int(input('Kg of cement in m^3 of mixture: ')) 
-    blast_furnace_slag_kg = int(input('Kg of blast furnace slag in m^3 of mixture: ')) 
-    fly_ash_kg = int(input('Kg of fly ash in m^3 of mixture: ')) 
-    water_kg = int(input('Kg of water in m^3 of mixture: ')) 
-
-    user_data = [cement_kg, blast_furnace_slag_kg, fly_ash_kg, water_kg]
-    user_data = pd.DataFrame([user_data], columns=['cement', 'blast_furnace_slag', 'fly_ash', 'water'])
-    scaled_user_data = scale_dataframe(user_data)
-    
-    print(model.predict(scaled_user_data))
+        stop_input = input('Do you want to make another prediction? yes/no\n')
+        stop = True if stop_input == 'no' else False
 
 main()
+
